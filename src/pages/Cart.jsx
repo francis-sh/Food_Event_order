@@ -118,8 +118,13 @@ emailjs.send(
       <h2>Your Cart</h2>
 
       {cart.length === 0 ? (
-        <p><em>Your cart is empty.</em></p>
-      ) : (
+  <div style={{ textAlign: "center" }}>
+    <p><em>Your cart is empty.</em></p>
+    <button className="button" onClick={() => navigate("/dashboard")}>
+      🔙 Back to Menu
+    </button>
+  </div>
+) : (
         <>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
@@ -203,10 +208,22 @@ emailjs.send(
           </select>
 
           <div style={{ marginTop: "1rem", textAlign: "right" }}>
-            <button className="button" onClick={submitOrder}>
-              Proceed to Checkout
-            </button>
-          </div>
+  <button
+    className="button"
+    onClick={submitOrder}
+    disabled={cart.length === 0}
+    style={{ opacity: cart.length === 0 ? 0.5 : 1, cursor: cart.length === 0 ? "not-allowed" : "pointer" }}
+  >
+    Proceed to Checkout
+  </button>
+</div>
+
+          <div style={{ marginTop: "2rem", textAlign: "left" }}>
+  <button className="button button-secondary" onClick={() => navigate("/dashboard")}>
+    ← Back to Menu
+  </button>
+</div>
+
         </>
       )}
     </div>

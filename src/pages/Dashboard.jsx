@@ -64,14 +64,9 @@ export default function Dashboard() {
     <div className="container">
       {/* Header */}
       <div className="header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h2>
-          Welcome,{" "}
-          {user?.firstName && user?.lastName
-            ? `${user.firstName} ${user.lastName}`
-            : user?.email}
-        </h2>
+        <h2>👋 Hello, {user?.firstName} {user?.lastName}</h2>
         <div>
-          {user?.email === "francsha@admin.com" && (
+          {user?.email === "fransisha67@gmail.com" && (
             <button
               className="btn-outline"
               onClick={() => navigate("/admin")}
