@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -20,27 +20,30 @@ export default function Login() {
   };
 
   return (
-    <div className="container">
-      <div className="card" style={{ maxWidth: 400, margin: "auto" }}>
-        <h2>Login</h2>
-        <form onSubmit={handleLogin}>
-          <input
-            className="input"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            className="input"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button className="button" type="submit">Login</button>
-        </form>
-      </div>
+    <div className="auth-box">
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <input
+          className="input"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          className="input"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button className="button" type="submit">Login</button>
+      </form>
+      <p style={{ marginTop: "1rem", fontSize: "0.9rem" }}>
+        Don’t have an account? <Link to="/register">Register</Link>
+      </p>
     </div>
   );
 }
