@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { v4 as uuidv4 } from "uuid"; // npm i uuid
-import emailjs from "@emailjs/browser";
+import emailjs from '@emailjs/browser'; // ✅ correct
 
 
 export default function Cart() {
@@ -77,8 +77,8 @@ export default function Cart() {
 const itemSummary = cart.map(i => `${i.name} x${i.quantity || 1}`).join(", ");
 
 emailjs.send(
-  "service_0cxwyha",
-  "template_uoarlno",
+  'service_0cxwyha',             // your service ID
+  'template_uoarlno',            // your template ID
   {
     user_email: user.email,
     order_id: newOrderId,
@@ -90,12 +90,9 @@ emailjs.send(
     address: orderType === "delivery" ? address : "N/A",
     order_items: itemSummary
   },
-  "mxAMf8U5mgzskwU7z"
-).then(() => {
-  console.log("✅ Email sent to boss");
-}).catch(err => {
-  console.error("❌ Email sending failed", err);
-});
+  'mxAMf8U5mgzskwU7z'            // your PUBLIC KEY
+)
+
 
     // OPTIONAL: send mail to boss here (next step)
     // sendOrderEmailToBoss(order)
